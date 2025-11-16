@@ -25,8 +25,9 @@ const authController = {
   },
   changeRole: async (req: Request, res: Response) => {
     try {
-      const payload = req.body;
-      const newUser = await authService.changeRole(payload);
+      const { role } = req.body;
+      const id = req.params.id;
+      const newUser = await authService.changeRole(id, role);
       res.status(201).json(newUser);
     } catch (error: any) {
       res
