@@ -17,6 +17,7 @@ const newsServiceAdmin = {
       const newsList = await News.find(query)
         .populate("authorId", "name email role")
         .populate("categoryId", "name")
+        .populate("subcategoryId", "name")
         .sort({ createdAt: -1 });
 
       return newsList;

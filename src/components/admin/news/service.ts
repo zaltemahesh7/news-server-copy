@@ -77,6 +77,7 @@ export const newsService = {
       const news = await News.findById(id)
         .populate("authorId", "name email")
         .populate("categoryId", "name")
+        .populate("subcategoryId", "name")
         .populate("districtId", "name")
         .populate("talukaId", "name")
         .populate("newsTypeId", "name");
