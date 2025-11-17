@@ -20,7 +20,13 @@ router
 router
   .route("/:id")
   .get(newsController.getNewsById)
-  .put(protect, authorizeRoles("admin", "anchor"), newsController.updateNews)
+  .put(
+    protect,
+    authorizeRoles("admin", "anchor"),
+    upload.single("image"),
+    uploadToImageKit,
+    newsController.updateNews,
+  )
   .delete(protect, authorizeRoles("admin"), newsController.deleteNews);
 
 export default router;
