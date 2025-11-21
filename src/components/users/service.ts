@@ -86,6 +86,49 @@ const userService = {
       throw new Error(error.message);
     }
   },
+
+  /**
+   * Update user (name, email, profileImage, bio, isActive)
+   */
+  updateUser: async (id: string, updateData: any) => {
+    try {
+      if (!mongoose.Types.ObjectId.isValid(id)) {
+        throw new Error("Invalid user ID");
+      }
+
+      const updated = await User.findByIdAndUpdate(id, updateData, {
+        new: true,
+      }).select("-password");
+
+      if (!updated) {
+        throw new Error("User not found");
+      }
+
+      return updated;
+    } catch (error: any) {
+      throw new Error(error.message);
+    }
+  },
+
+  deleteUser: async (id: string) => {
+    try {
+      if (!mongoose.Types.ObjectId.isValid(id)) {
+        throw new Error("Invalid user ID");
+      }
+
+      const deleted = await User.findByIdAndUpdate(id, { isActive: false }, { new: true }).select(
+        "-password",
+      );
+
+      if (!deleted) {
+        throw new Error("User not found");
+      }
+
+      return { message: "User deactivated successfully", user: deleted };
+    } catch (error: any) {
+      throw new Error(error.message);
+    }
+  },
 };
 
 export default userService;

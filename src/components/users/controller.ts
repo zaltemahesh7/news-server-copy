@@ -73,6 +73,48 @@ const userController = {
       });
     }
   },
+
+  /**
+   * Update user details
+   */
+  updateUser: async (req: Request, res: Response) => {
+    try {
+      const updated = await userService.updateUser(req.params.id, req.body);
+
+      res.status(200).json({
+        success: true,
+        message: "User updated successfully",
+        data: updated,
+      });
+    } catch (error: any) {
+      console.error("Error updating user:", error.message);
+      res.status(400).json({
+        success: false,
+        message: error.message,
+      });
+    }
+  },
+
+  /**
+   * Soft delete (deactivate) user
+   */
+  deleteUser: async (req: Request, res: Response) => {
+    try {
+      const result = await userService.deleteUser(req.params.id);
+
+      res.status(200).json({
+        success: true,
+        message: result.message,
+        data: result.user,
+      });
+    } catch (error: any) {
+      console.error("Error deleting user:", error.message);
+      res.status(400).json({
+        success: false,
+        message: error.message,
+      });
+    }
+  },
 };
 
 export default userController;
