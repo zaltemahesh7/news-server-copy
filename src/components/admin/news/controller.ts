@@ -21,7 +21,7 @@ export const newsController = {
         scheduledAt,
       } = req.body;
 
-      thumbnail = (req as any).fileinfo.url;
+      thumbnail = (req as any)?.fileInfo?.url;
       const authorId = (req as any)?.user?.id; // user from auth middleware
 
       if (!title || !content || !authorId || !categoryId) {
@@ -52,7 +52,7 @@ export const newsController = {
         data: news,
       });
     } catch (error: any) {
-      console.error("Error in createNews:", error.message);
+      console.error("Error in createNews:", error);
       res.status(500).json({ success: false, message: error.message });
     }
   },
@@ -86,7 +86,7 @@ export const newsController = {
         data: news,
       });
     } catch (error: any) {
-      console.error("Error fetching news by ID:", error.message);
+      console.error("Error fetching news by ID:", error);
       res.status(404).json({ success: false, message: error.message });
     }
   },
