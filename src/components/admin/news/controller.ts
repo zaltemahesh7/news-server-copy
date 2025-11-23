@@ -21,7 +21,7 @@ export const newsController = {
         scheduledAt,
       } = req.body;
 
-      thumbnail = (req as any).fileInfo.url;
+      thumbnail = (req as any).fileinfo.url;
       const authorId = (req as any)?.user?.id; // user from auth middleware
 
       if (!title || !content || !authorId || !categoryId) {

@@ -7,7 +7,7 @@ import userController from "./controller";
 router.use("/auth", authRouter);
 
 router.get("/", userController.getUsers);
-router.get("/:id", userController.getUserById);
+router.route("/:id").get(userController.getUserById).put(userController.updateUser);
 router.put("/:id/role", userController.changeRole);
 
 export default router;
