@@ -9,7 +9,8 @@ export const upload = multer({ storage });
 export const uploadToImageKit = async (req: Request, res: Response, next: NextFunction) => {
   try {
     if (!req.file) {
-      return res.status(400).json({ message: "No image file provided" });
+      next();
+      return;
     }
 
     const base64File = req.file.buffer.toString("base64");
