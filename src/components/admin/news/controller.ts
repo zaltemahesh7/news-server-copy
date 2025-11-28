@@ -153,4 +153,24 @@ export const newsController = {
       res.status(400).json({ success: false, message: error.message });
     }
   },
+
+  uploadImage: async (req: Request, res: Response) => {
+    try {
+      if (!(req as any)?.fileInfo) {
+        return res.status(400).json({
+          success: false,
+          message: "No image uploaded",
+        });
+      }
+
+      return res.status(200).json({
+        success: true,
+        message: "Image uploaded successfully",
+        data: (req as any).fileInfo,
+      });
+    } catch (error: any) {
+      console.error("Error uploading image:", error.message);
+      res.status(500).json({ success: false, message: error.message });
+    }
+  },
 };

@@ -18,6 +18,16 @@ router
   .get(newsController.getAllNews);
 
 router
+  .route("/upload")
+  .post(
+    protect,
+    authorizeRoles("admin", "anchor"),
+    upload.single("image"),
+    uploadToImageKit,
+    newsController.uploadImage,
+  );
+
+router
   .route("/:id")
   .get(newsController.getNewsById)
   .put(
