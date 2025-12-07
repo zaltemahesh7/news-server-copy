@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "dhairyasiddhinews24",
+  "private_key_id": "cd72e7777d905548c0a22e2fc575527e473a7d64",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDz3ed8Nzc2nrz3\nfuUeeQiDk9roqn9QkAMzsK5La+r4QtmVmKSpa954rnBozxyUJK99m+KOlXSV2kVc\nFdSzlQW9RoaFfHVrmSoGNsRk2NJX5Zi5cC9j6+QOXTXFbkK64RdvN/DwVPz29CMT\n+jqFXSUgxASCGnpUmIsApCUwS1nQNeyx6/PhhqoCqV7PuB0q2NqRAR+igAVzzPd5\n2/Y6fRBStLndCIL5twA29NJVas93Y2/PeaXmlqm22B7O42uH4sq/0mWhuu656JPi\nif3KLSMulCIcB1gnfVLyHJ20kRAb78+pyxjsScVmaMYirXIDPUgVJ4c3384umP0U\narRsvL85AgMBAAECggEAUx0OCAfJiZQQU0msTPZzMGTz9tglDBAJB1TwEkR1kKc4\nAQRFGnjpGbhaF15/Hv5h0S2PyYimc2wwt3G5THs9uYSP1G7WlhVdfUCtLrG2/r4B\njzHs9OEwmLSr3t31YDvXANDQDRjqHkCWs/hUeZ+FR+WGo9DiYHKc7VsEUbFcqtkL\nwcgAWg+kklzyio2DmCF37A7woZU7r68OPXheJeRhwdjxthY5OXPv3XbzOvJWquHF\n68sMad6IKS5SoGmyRY051e495/Ismo43K/XU+/+rQmVv3Ga6QLIhQuFe7mNDRtU7\neuvTPO/zPckYFDFRMcqAr2l9BRmeje2PUQGA28lFAQKBgQD6wr6T4wHo3q7T4Jrz\nOsaBV9SPsI3EcUfG19LFJx9+ddp/wXHm8fbqvJlD78KD+zv79P0L13BJXscIK3m4\nwJzQuJqTTu3HI3yzBnKUvKr5A+ZYYfExhX19Uvnh+GOTJvQzeveUapPkRflM6ieO\nni6C8dZPRdNKjgrjVLowAxCq4wKBgQD49kk5deZUMG5iIzGKVN+NJgYXF0nw/9Rv\nNKpAIgHKo7LCXvtLKbVXS7NjR+LGYdV41ShV9+se+NFR4onCX9on1liaUkAVGoPh\nqPZkFJtjW6I1iK523l+Jdgc0lgJf3fZy66ACNKdj50M2ImjaMKj3Fl0t4C9Qj4uQ\nmJ61OSS8MwKBgQCTPOAME8HeS0qaLAqvgLZn4ft0d3V2gBFmJvmiO6uZZHfshdhs\ng2y5Pg48Pr6XImCBO8ONPW24FweEu4pYOfiZ8ZsJndGuGR8yOznyLamyV2DcSn4F\n1tztRlhlH6TQFZJT3AMdSUsXQSL1z5N0gVrMFlYA6/35i9fGzcwZPuN9gwKBgFUZ\nytnrZTot++1r3klMzcWv07Ec8teAe5svw2p8tWQRJM+wK/H7ZdNbOwyay/fIBXJy\nWoFYZ3SE1PhKmZBpt2aarFrD9se/8oi2etKnAJ6r+fyWphxX0wxn3fqptFIUy2Np\nC571ZKqPqLfedzzuGTOs31kJIuNEzg41PTrxN49lAoGAJLG65DW6Uq2ErDNPKXEb\n3zGQqyO37j0mGbuER6TerQRIbRseAfRyPVelgPrJj2oOvc8fUL4syWd/06F9UoT/\ng32oCNOyQMpp0cZsR3MaqrCOpW6Zdi+bfHX3tSLrQinyT4nA1tU3WXv7qAeTuXgA\nIESrXnp/tBJl9WqbjUooJoE=\n-----END PRIVATE KEY-----\n",
+  "client_email": "dhairyasiddhinews24@dhairyasiddhinews24.iam.gserviceaccount.com",
+  "client_id": "112424995801937496376",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/dhairyasiddhinews24%40dhairyasiddhinews24.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

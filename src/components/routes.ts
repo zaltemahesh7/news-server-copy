@@ -16,4 +16,7 @@ router.use("/taluka", talukaRoutes);
 import userRoutes from "./users/routes";
 router.use("/user", userRoutes);
 
+import analyticsRoutes from "./analytics/routes";
+router.use("/analytics", analyticsRoutes);
+
 export default router;
