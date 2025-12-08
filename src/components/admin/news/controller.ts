@@ -173,4 +173,24 @@ export const newsController = {
       res.status(500).json({ success: false, message: error.message });
     }
   },
+  /**
+   * GET /api/admin/stats
+   * Protected: admin
+   */
+  getDashboardCounts: async (_req: Request, res: Response) => {
+    try {
+      const counts = await newsService.getDashboardCounts();
+      return res.status(200).json({
+        success: true,
+        message: "Dashboard counts fetched successfully",
+        data: counts,
+      });
+    } catch (error: any) {
+      console.error("Error fetching dashboard counts:", error?.message || error);
+      return res.status(500).json({
+        success: false,
+        message: error?.message || "Failed to fetch dashboard counts",
+      });
+    }
+  },
 };

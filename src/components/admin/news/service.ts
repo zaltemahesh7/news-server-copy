@@ -1,4 +1,27 @@
+import { User } from "../../users/auth/model";
 import { News, INews } from "./model";
+
+
+type NewsStatus = "draft" | "pending" | "approved" | "rejected" | "published";
+type UserRole = "admin" | "anchor" | "user";
+
+interface NewsCounts {
+  total: number;
+  byStatus: Record<NewsStatus, number>;
+}
+
+interface UserCounts {
+  total: number;
+  byRole: Record<UserRole, number>;
+}
+
+export interface DashboardCounts {
+  news: NewsCounts;
+  users: UserCounts;
+}
+
+const ALL_NEWS_STATUSES: NewsStatus[] = ["draft", "pending", "approved", "rejected", "published"];
+const ALL_USER_ROLES: UserRole[] = ["admin", "anchor", "user"];
 
 export const newsService = {
   /**
@@ -10,6 +33,12 @@ export const newsService = {
       if (!title || !content || !authorId || !categoryId) {
         throw new Error("Title, content, authorId, and categoryId are required");
       }
+
+      const mediaImgs = newsData.media?.images?.split(",") || [];
+      newsData.media = {
+        ...newsData.media,
+        images: mediaImgs,
+      };
 
       const formattedTags = newsData.tags?.map((tag) => tag.trim().toLowerCase()) || [];
 
@@ -102,6 +131,12 @@ export const newsService = {
         updateData.tags = updateData.tags.map((tag) => tag.trim().toLowerCase());
       }
 
+      const mediaImgs = updateData.media?.images?.split(",") || [];
+      updateData.media = {
+        ...updateData.media,
+        images: mediaImgs,
+      };
+
       const updatedNews = await News.findByIdAndUpdate(id, updateData, {
         new: true,
       });
@@ -128,4 +163,87 @@ export const newsService = {
       throw new Error(error.message || "Failed to delete news");
     }
   },
+
+  /**
+   * Get aggregated counts for news (by status) and users (by role).
+   * - news: ignores soft-deleted (isDeleted: true) items
+   * - users: counts all users (optionally filter by isActive if desired)
+   */
+  getDashboardCounts: async (): Promise<DashboardCounts> => {
+    try {
+      // News aggregation: group by status (ignore soft-deleted)
+      const newsAggPromise = News.aggregate([
+        { $match: { isDeleted: false } },
+        {
+          $group: {
+            _id: "$status",
+            count: { $sum: 1 },
+          },
+        },
+      ]);
+
+      // Users aggregation: group by role (optionally filter by isActive if you want)
+      const userAggPromise = User.aggregate([
+        {
+          $group: {
+            _id: "$role",
+            count: { $sum: 1 },
+          },
+        },
+      ]);
+
+      // Run both aggregations in parallel
+      const [newsAggResult, userAggResult] = await Promise.all([newsAggPromise, userAggPromise]);
+
+      // Map aggregation results to objects with guaranteed keys
+      const newsByStatus: Record<NewsStatus, number> = ALL_NEWS_STATUSES.reduce(
+        (acc, status) => {
+          acc[status] = 0;
+          return acc;
+        },
+        {} as Record<NewsStatus, number>
+      );
+
+      for (const row of newsAggResult) {
+        const status = String(row._id) as NewsStatus;
+        if (ALL_NEWS_STATUSES.includes(status)) {
+          newsByStatus[status] = row.count;
+        }
+      }
+
+      const userByRole: Record<UserRole, number> = ALL_USER_ROLES.reduce(
+        (acc, role) => {
+          acc[role] = 0;
+          return acc;
+        },
+        {} as Record<UserRole, number>
+      );
+
+      for (const row of userAggResult) {
+        const role = String(row._id) as UserRole;
+        if (ALL_USER_ROLES.includes(role)) {
+          userByRole[role] = row.count;
+        }
+      }
+
+      // Totals
+      const newsTotal = Object.values(newsByStatus).reduce((s, v) => s + v, 0);
+      const userTotal = Object.values(userByRole).reduce((s, v) => s + v, 0);
+
+      return {
+        news: {
+          total: newsTotal,
+          byStatus: newsByStatus,
+        },
+        users: {
+          total: userTotal,
+          byRole: userByRole,
+        },
+      };
+    } catch (error: any) {
+      console.error("Error in getDashboardCounts:", error?.message || error);
+      throw new Error(error?.message || "Failed to fetch dashboard counts");
+    }
+  },
 };
+

@@ -18,6 +18,10 @@ router
   .get(newsController.getAllNews);
 
 router
+  .route("/dashboard-counts")
+  .get(protect, authorizeRoles("admin"), newsController.getDashboardCounts);
+
+router
   .route("/upload")
   .post(
     protect,
