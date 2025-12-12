@@ -13,7 +13,7 @@ export interface INews extends Document {
   tagsText?: string;
   thumbnail?: string;
   media?: {
-    images?: string[];
+    images?: any;
     videos?: string[];
   };
   status: "draft" | "pending" | "approved" | "rejected" | "published";
