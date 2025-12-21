@@ -6,7 +6,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: ["https://www.dhairyasiddhinews24.in", "https://dhairyasiddhinews24.in"],
+    origin: ["https://www.dhairyasiddhinews24.in", "https://dhairyasiddhinews24.in", "https://admin.dhairyasiddhinews24.in"],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
