@@ -4,8 +4,15 @@ import cors from "cors";
 
 const app = express();
 
-// middleware
-app.use(cors({ origin: "*" }));
+app.use(
+  cors({
+    origin: ["https://www.dhairyasiddhinews24.in", "https://dhairyasiddhinews24.in"],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  }),
+);
+
 app.use(morgan("dev"));
 app.use(express.json());
 
